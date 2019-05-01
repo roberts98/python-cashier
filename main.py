@@ -1,1 +1,3 @@
-print('hello world')
+from Window import Window
+
+Window().start()
