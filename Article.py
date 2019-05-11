@@ -26,4 +26,4 @@ class PieceArticle(Article):
     self._name = name
 
 PieceArticlesList = ['Baton', 'Chipsy', 'Chleb', 'Bulki', 'Woda', 'Pepsi', 'Sok', 'Sól', 'Cukier', 'Mąka']
-WeightArticlelsList = ['Ziemniaki', 'Pomidory', 'Arbuzy', 'Banany', 'Jabłka', 'Gruszki', 'Cebula', 'Czosnek', 'Rabarbar', 'Smoczy Owoc']
+WeightArticlesList = ['Ziemniaki', 'Pomidory', 'Arbuzy', 'Banany', 'Jabłka', 'Gruszki', 'Cebula', 'Czosnek', 'Rabarbar', 'Smoczy Owoc']

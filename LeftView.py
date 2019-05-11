@@ -4,18 +4,17 @@ class LeftView:
   def __init__(self, window, controller):
     self._window = window
     self._controller = controller
-    string = self._controller._currentArticle._name + ' ' + str(self._controller._currentArticleAmount)
-
-    self._article = tk.Button(self._window, text=string, command=lambda: self._controller.scanArticle())
-    self._article.grid(row=2, column=0, columnspan=10)
     self.newItem()
     self.articleInfo()
 
   def newItem(self):
-    self._article.destroy()
-    string = self._controller._currentArticle._name + ' ' + str(self._controller._currentArticleAmount)
+    if hasattr(self, '_article'):
+      self._article.destroy()
 
-    self._article = tk.Button(self._window, text=string, command=lambda: self._controller.scanArticle())
+    string = self._controller._currentArticle._name + ' ' + str(self._controller._currentArticleAmount)
+    print(string)
+
+    self._article = tk.Button(self._window, text=string, command=lambda: self._controller.onArticleClick())
     self._article.grid(row=2, column=0)
     # pass
 
