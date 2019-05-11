@@ -12,6 +12,12 @@ class Cashier:
     self._scannedArticlesAmount = 0
     self._time = time.time()
 
+    self.generateArticlesList()
+    self.generateSingleArticle()
+
+  def setView(self, view):
+    self._view = view
+
   def generateArticlesList(self):
     self._articlesAmount = random.randint(10, 20)
     for i in range(0, self._articlesAmount):
@@ -61,20 +67,21 @@ class Cashier:
     print(self._scannedArticlesAmount, 'scanned articles amount')
 
 cashier = Cashier()
-cashier.generateArticlesList()
-cashier.generateSingleArticle()
+# cashier.generateArticlesList()
+# cashier.generateSingleArticle()
 
-print(cashier._currentArticle._name)
-print(cashier._currentArticleAmount)
-cashier._currentArticle.setArrivalTime(10)
+# print(cashier._currentArticle._name)
+# print(cashier._currentArticleAmount)
+# cashier._currentArticle.setArrivalTime(10)
 
-while True:
-  x = int(input('podaj liczbe'))
-  cashier.scanArticle(x)
-  print(cashier._currentArticle._name)
-  print(cashier._currentArticleAmount)
-  if x == 0:
-    break
+# while True:
+#   x = int(input('podaj liczbe'))
+#   cashier.scanArticle(x)
+#   print(cashier._currentArticle._name)
+#   print(cashier._currentArticleAmount)
+#   if x == 0:
+#     break
 
-for item in cashier._articlesList:
-  print(item._arrivalTime)
+# for item in cashier._articlesList:
+#   print(item._arrivalTime)
+

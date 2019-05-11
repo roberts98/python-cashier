@@ -1,3 +1,7 @@
 from Window import Window
+from Cashier import Cashier
 
-Window().start()
+controller = Cashier()
+view = Window(controller)
+controller.setView(view)
+view.start()
