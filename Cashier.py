@@ -15,11 +15,14 @@ class Cashier:
     self._time = time.time()
     self._isReadyForWeigh = False
 
-    self.generateArticlesList()
-    self.generateSingleArticle()
-
   def setView(self, view):
     self._view = view
+
+  def start(self):
+    self.generateArticlesList()
+    self.generateSingleArticle()
+    self._view.leftView._nextClient.destroy()
+    self._view.leftView.newItem()
 
   def setArticlesToScan(self, value):
     self._articlesToScan = value

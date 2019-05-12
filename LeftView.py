@@ -6,14 +6,17 @@ class LeftView:
     self._controller = controller
     self.newItem()
 
+    self._nextClient = tk.Button(window, text="nastepny klient", pady=10, padx=10, command=lambda: controller.start())
+    self._nextClient.grid(row=2, column=0)
+
   def newItem(self):
     if hasattr(self, '_article'):
       self._article.destroy()
+    if self._controller._currentArticle:
+      string = self._controller._currentArticle._name + ' ' + str(self._controller._currentArticleAmount)
 
-    string = self._controller._currentArticle._name + ' ' + str(self._controller._currentArticleAmount)
-
-    self._article = tk.Button(self._window, text=string, pady=10, padx=10, command=lambda: self._controller.onArticleClick())
-    self._article.grid(row=2, column=0)
+      self._article = tk.Button(self._window, text=string, pady=10, padx=10, command=lambda: self._controller.onArticleClick())
+      self._article.grid(row=2, column=0)
     # pass
 
   def bigAlert(self, text):
