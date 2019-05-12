@@ -74,7 +74,7 @@ class Cashier:
       self.refresh()
     elif self._currentArticleAmount < 0:
       return self.lose()
-    self._view.leftView.articleInfo()
+    self._view.summary.articleInfo()
 
   def weighArticle(self):
     if self._currentArticle._isPieceArticle:
@@ -83,21 +83,25 @@ class Cashier:
       self._currentArticleAmount = (random.randint(5, 200)) / 100
       self._scannedArticlesAmount += 1
       self._currentArticle.setDeleteTime(time.time())
-      self._view.leftView.articleInfo()
+      self._view.summary.articleInfo()
 
       r = Timer(0, self.refresh)
       s = Timer(1.0, self.genAndRefresh)
       r.start()
       s.start() 
+    else:
+      self._view.leftView.bigAlert('nacisnij na artykul')
+      s = Timer(1.0, self._view.leftView.removeAlert)
+      s.start() 
 
   def lose(self):
-    print('Loser')
-    self._view.leftView.loseInfo()
-    self._view.leftView.timeInfo(time.time() - self._time)
+    self._view.summary.loseInfo()
+    self._view.summary.timeInfo((time.time() - self._time) / self._scannedArticlesAmount)
+    self._view.destroy()
 
   def refresh(self):
     self._view.leftView.newItem()
-    
+
   def genAndRefresh(self):
     self.generateSingleArticle()
     self._view.leftView.newItem()

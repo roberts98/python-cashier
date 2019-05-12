@@ -5,30 +5,20 @@ class LeftView:
     self._window = window
     self._controller = controller
     self.newItem()
-    self.articleInfo()
 
   def newItem(self):
     if hasattr(self, '_article'):
       self._article.destroy()
 
     string = self._controller._currentArticle._name + ' ' + str(self._controller._currentArticleAmount)
-    print(string)
 
-    self._article = tk.Button(self._window, text=string, command=lambda: self._controller.onArticleClick())
+    self._article = tk.Button(self._window, text=string, pady=10, padx=10, command=lambda: self._controller.onArticleClick())
     self._article.grid(row=2, column=0)
     # pass
 
-  def loseInfo(self):
-    font = ('times', 20, 'bold')
-    self._lose = tk.Label(self._window, text='Przegrales', bg='#abc', fg='white', font=font)
-    self._lose.grid(row=3, column=0)
+  def bigAlert(self, text):
+    self._alert = tk.Label(self._window, text=text, font=('times', 25))
+    self._alert.grid(row=8, column=4)
 
-  def articleInfo(self):
-    string = 'Skasowanych towarów ' + str(self._controller._scannedArticlesAmount)
-    self._info = tk.Label(self._window, text=string)
-    self._info.grid(row=4)
-
-  def timeInfo(self, time):
-    string = 'czas ' + str(time)
-    self._time = tk.Label(self._window, text=string)
-    self._time.grid(row=5)
+  def removeAlert(self):
+    self._alert.destroy()

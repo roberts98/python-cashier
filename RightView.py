@@ -8,30 +8,20 @@ class RightView:
     sv = tk.StringVar()
     sv.trace('w', lambda name, index, mode, sv=sv: self.onInputChange(sv.get()))
 
-    # Amount input
     font = ('times', 14, 'bold')
-    self._amountInput = tk.Entry(self._window, textvariable=sv, width=24, font=font, fg='red')
-    self._amountInput.grid(row=0, column=0)
+    self._amountInput = tk.Entry(self._window, textvariable=sv, width=24, font=font, fg='black', bd=10, justify='center')
+    self._amountInput.grid(row=0, column=4)
 
-    ###########
-    # Buttons #
-    ###########
+    self._backspaceButton = tk.Button(self._window, text='backspace', pady=10, padx=10, command=lambda: self._amountInput.delete(len(self._amountInput.get())-1, tk.END))
+    self._backspaceButton.grid(row=0, column=5)
 
-    # Backspace
-    self._backspaceButton = tk.Button(self._window, text='backspace', command=lambda: self._amountInput.delete(len(self._amountInput.get())-1, tk.END))
-    self._backspaceButton.grid(row=0, column=1)
+    self._clearButton = tk.Button(self._window, text='wyczyść', pady=10, padx=10, command=lambda: self._amountInput.delete(0, tk.END))
+    self._clearButton.grid(row=0, column=6)
+    
+    self._weighButton = tk.Button(self._window, text='zważ', pady=10, padx=10, command=controller.weighArticle)
+    self._weighButton.grid(row=0, column=7)
 
-    # Clear
-    self._clearButton = tk.Button(self._window, text='wyczyść', command=lambda: self._amountInput.delete(0, tk.END))
-    self._clearButton.grid(row=0, column=2)
-
-    # Weigh
-    self._weighButton = tk.Button(self._window, text='zważ', command=controller.weighArticle)
-    self._weighButton.grid(row=0, column=3)
-
-    # Numpad START
     self._numpad = Numpad(self._window, self)
-    # Numpad END
   
   def onInputChange(self, value):
     if value:
